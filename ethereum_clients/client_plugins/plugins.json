@@ -1,5 +1,16 @@
 [
   {
+    "name": "besu",
+    "displayName": "Besu",
+    "type": "client",
+    "author": {
+      "name": "Philipp Langhans",
+      "email": "philipp@ethereum.org",
+      "address": "?"
+    },
+    "location": "https://github.com/philiplgh/grid-besu-plugin"
+  },
+  {
     "name": "clef",
     "displayName": "Clef",
     "type": "signer",
@@ -20,5 +31,5 @@
       "address": "84741b205fe071833b97b081a87dc39fae078ff3"
     },
     "location": "https://github.com/ryanio/grid-ipfs-plugin"
-  }  
+  }
 ]
