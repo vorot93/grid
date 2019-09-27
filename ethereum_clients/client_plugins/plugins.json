@@ -6,9 +6,9 @@
     "author": {
       "name": "Philipp Langhans",
       "email": "philipp@ethereum.org",
-      "address": "?"
+      "address": ""
     },
-    "location": "https://github.com/philiplgh/grid-besu-plugin"
+    "location": "https://github.com/PhilippLgh/grid-pantheon-plugin"
   },
   {
     "name": "clef",
