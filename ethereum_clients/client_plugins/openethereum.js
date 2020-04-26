@@ -2,16 +2,16 @@ const HOME = require('os').homedir()
 let BASE
 switch (process.platform) {
   case 'win32': {
-    BASE = `${process.env.USERPROFILE}/AppData/Roaming/Parity/Ethereum`
+    BASE = `${process.env.USERPROFILE}/AppData/Roaming/OpenEthereum`
     break
   }
   case 'linux': {
-    BASE = '~/.local/share/io.parity.ethereum'
+    BASE = '~/.local/share/openethereum'
     break
   }
   case 'darwin': {
     // WARNING don't just use ~/Library/.. here
-    BASE = `${HOME}/Library/Application Support/io.parity.ethereum`
+    BASE = `${HOME}/Library/Application Support/OpenEthereum`
     break
   }
   default: {
@@ -23,12 +23,11 @@ const IPC_PATH = `${BASE}/jsonrpc.ipc`
 module.exports = {
   type: 'client',
   order: 2,
-  displayName: 'Parity',
-  name: 'parity',
-  // repository: 'https://github.com/paritytech/parity-ethereum'
-  repository: 'https://github.com/evertonfraga/releases-parity',
+  displayName: 'OpenEthereum',
+  name: 'openethereum',
+  repository: 'https://github.com/openethereum/openethereum',
   prefix: `${process.platform}`, // filter github assets
-  binaryName: process.platform === 'win32' ? 'parity.exe' : 'parity',
+  binaryName: process.platform === 'win32' ? 'openethereum.exe' : 'openethereum',
   resolveIpc: logs => IPC_PATH,
   settings: [
     {
@@ -78,14 +77,14 @@ module.exports = {
     }
   ],
   about: {
-    description: 'Parity is a robust EVM and WASM client implemented in Rust.',
+    description: 'OpenEthereum is a fast and feature-rich multi-network client implemented in Rust.',
     apps: [
       {
         name: 'RPC Tester App',
         url: 'package://github.com/ryanio/grid-rpc-app',
         dependencies: [
           {
-            name: 'parity',
+            name: 'openethereum',
             settings: []
           }
         ]
@@ -94,12 +93,12 @@ module.exports = {
     links: [
       {
         name: 'GitHub Repository',
-        url: 'https://github.com/paritytech/parity-ethereum'
+        url: 'https://github.com/openethereum/openethereum'
       }
     ],
     docs: [
       {
-        name: 'Parity Docs',
+        name: 'OpenEthereum Docs',
         url: 'https://wiki.parity.io'
       },
       {
@@ -109,12 +108,12 @@ module.exports = {
     ],
     community: [
       {
-        name: 'Riot.im Chat',
-        url: 'https://riot.im/app/#/room/#watercooler:matrix.parity.io'
+        name: 'Discord Chat',
+        url: 'https://discord.io/openethereum'
       },
       {
-        name: 'Twitter (@ParityTech)',
-        url: 'https://twitter.com/ParityTech'
+        name: 'Twitter (@OpenEthereumOrg)',
+        url: 'https://twitter.com/OpenEthereumOrg'
       }
     ]
   }

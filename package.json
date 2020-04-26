@@ -15,7 +15,7 @@
     "test:mocha": "cross-env NODE_ENV=test mocha ./test",
     "test:e2e": "cross-env NODE_ENV=development ava ./test/e2e --verbose -s",
     "test:integration:watch": "cross-env NODE_ENV=test mocha ./test/integration --watch",
-    "test:integration:parity": "cross-env NODE_ENV=test mocha ./test/integration/parity.test.js",
+    "test:integration:openethereum": "cross-env NODE_ENV=test mocha ./test/integration/openethereum.test.js",
     "test:integration:geth": "cross-env NODE_ENV=test mocha ./test/integration/geth.test.js",
     "prepare-release": "node ./scripts/copyApp.js",
     "dist": "yarn run prepare-release && electron-builder",

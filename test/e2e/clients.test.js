@@ -30,7 +30,7 @@ test.afterEach.always(async t => {
   }
 })
 
-test('Parity config to flags', async t => {
+test('OpenEthereum config to flags', async t => {
   const { app, client, win } = await init(t)
   const versionList = new VersionList(app.client)
   const node = new Node(app.client)
@@ -39,7 +39,7 @@ test('Parity config to flags', async t => {
 
   await versionList.waitToLoad()
 
-  await node.select('parity')
+  await node.select('openethereum')
 
   await versionList.waitToLoad()
   await versionList.clickOnItem(0)
@@ -49,15 +49,15 @@ test('Parity config to flags', async t => {
 
   const defaultIpcPathValue = await settings.getPathInput('ipcPath').getValue()
 
-  await node.toggle('parity')
+  await node.toggle('openethereum')
   await node.waitUntilStarted()
 
-  const parityFlags = await getProcessFlags('parity')
-  const gf = parityFlags.join(' ')
+  const openethereumFlags = await getProcessFlags('openethereum')
+  const gf = openethereumFlags.join(' ')
 
   t.true(gf.includes(`--ipc-path ${defaultIpcPathValue}`))
 
-  await node.toggle('parity')
+  await node.toggle('openethereum')
 })
 
 const clientShouldStopWhenAppIsClosedMacro = async (t, input) => {
@@ -94,8 +94,8 @@ clientShouldStopWhenAppIsClosedMacro.title = (
  * https://github.com/avajs/ava/blob/master/docs/01-writing-tests.md#reusing-test-logic-through-macros
  *
  * You can run a single test with the following command:
- * yarn test:e2e -m 'parity should stop when app is closed'
+ * yarn test:e2e -m 'openethereum should stop when app is closed'
  */
 test(clientShouldStopWhenAppIsClosedMacro, 'geth')
 test(clientShouldStopWhenAppIsClosedMacro, 'aleth')
-test.failing(clientShouldStopWhenAppIsClosedMacro, 'parity')
+test.failing(clientShouldStopWhenAppIsClosedMacro, 'openethereum')

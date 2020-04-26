@@ -4,47 +4,47 @@ const path = require('path')
 const { PluginHost } = require('../../ethereum_clients/PluginHost')
 
 describe('Clients', function() {
-  describe('Parity', function() {
+  describe('OpenEthereum', function() {
     it('establishes an IPC connection', async function() {
       this.timeout(2 * 60 * 1000)
       const pluginHost = new PluginHost()
-      const parity = pluginHost.getPluginByName('parity')
-      assert.isDefined(parity, 'parity plugin loaded and found')
-      const releases = await parity.getReleases()
+      const openethereum = pluginHost.getPluginByName('openethereum')
+      assert.isDefined(openethereum, 'openethereum plugin loaded and found')
+      const releases = await openethereum.getReleases()
       let latest = releases[0]
       if (latest.remote) {
-        latest = await parity.download(latest, progress => {
+        latest = await openethereum.download(latest, progress => {
           console.log('progress', progress)
         })
       }
       // console.log('exists', latest.location, latest.remote)
       assert.isTrue(
         fs.existsSync(latest.location),
-        'local parity package exists'
+        'local openethereum package exists'
       )
       // will find or extract the binary from package
-      const { binaryPath } = await parity.getLocalBinary()
+      const { binaryPath } = await openethereum.getLocalBinary()
       assert.isTrue(
         fs.existsSync(binaryPath),
-        'parity executable was extracted'
+        'openethereum executable was extracted'
       )
 
       // both works: with or without specified IPC path
-      const config = {} // parity.config
+      const config = {} // openethereum.config
 
       return new Promise((resolve, reject) => {
-        parity.on('log', log => {
+        openethereum.on('log', log => {
           console.log('log', log)
         })
-        parity.on('started', () => {
+        openethereum.on('started', () => {
           console.log('started...')
         })
-        parity.on('connected', () => {
+        openethereum.on('connected', () => {
           console.log('connected!')
-          parity.stop()
+          openethereum.stop()
           resolve()
         })
-        parity.start(latest, config)
+        openethereum.start(latest, config)
       })
     })
   })
